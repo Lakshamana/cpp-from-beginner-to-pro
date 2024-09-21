@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if ! test -d ./build; then
+  mkdir build
+fi
+
+bin=`echo $1 | cut -d. -f1 | cut -d/ -f2`
+g++ -std=c++23 -Wall -Wextra -Wpedantic -Wshadow -g $1 -o "build/$bin" && ./build/$bin ${@:2}
+
+# Use g++ -o [name].o [..].cpp -Wall 
+# in order to compile with all of 
+# cpp files/headers
